@@ -1,8 +1,8 @@
 #!/bin/sh
 
 ORG=chihchun
-PROJECT=$(basename $(readlink -f ..) -docker)
-VERSION=$(basename $(readlink -f .))
+PROJECT=$(basename $(readlink -f .) -docker)
+VERSION=$(date +%Y)
 DOCKER_TAG=${ORG}/${PROJECT}:${VERSION}
 DOCKER_LATEST_TAG=${ORG}/${PROJECT}:latest
 

@@ -4,6 +4,8 @@ set -x
 # Disable anything on the host that use the smartcard.
 # Disable pcscd
 sudo /etc/init.d/pcscd stop
+sudo systemctl stop pcscd
+sudo systemctl stop pcscd.socket
 # GNU privacy guard - smart card support
 sudo killall scdaemon
 
@@ -21,5 +23,6 @@ docker run -ti --rm \
     --privileged -v /dev/bus/usb:/dev/bus/usb \
     -v $(xdg-user-dir DOWNLOAD):/home/firefox/Downloads \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    chihchun/personal-income-tax:2018 \
+    --shm-size 2g \
+    chihchun/personal-income-tax:$(date +%Y) \
     $@
